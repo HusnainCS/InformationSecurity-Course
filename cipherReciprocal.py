@@ -1,11 +1,30 @@
-print("This is a cipher reciprocal module.")
 def reciprocal_cipher(text):
-    return text[::-1]
+    text = text.upper()
+    result = ""
+    for char in text:
+        if 'A' <= char <= 'Z':
+            result += chr(155 - ord(char))
+        else:
+            print("Error: Only letters A-Z are allowed!")
+            return None  # Stop the function here
+    return result
+
+def main():
+    print("Reciprocal Cipher Example") 
+    choice = input("Type 'c' for CIPHER to encrypt or 'p' for PLAIN-TEXT to decrypt: ")
+    user_text = input("Enter text: ")
+    if choice == "c":
+        print("Ciphered text:")
+        output = reciprocal_cipher(user_text)
+        if output is not None:
+            print(output)
+    elif choice == "p":
+        print("Deciphered text:")
+        output = reciprocal_cipher(user_text)
+        if output is not None:
+            print(output)
+    else:
+        print("Invalid option!")
+
 if __name__ == "__main__":
-    sample_text = "Hello, World!"
-    print("Original:", sample_text)
-    print("Reciprocal:", reciprocal_cipher(sample_text))
-# This module provides a simple reciprocal cipher function.
-# It reverses the input text as a form of encryption/decryption.
-# The function can be tested by running the module directly.
-# The reciprocal_cipher function takes a string and returns its reverse.
+    main()
